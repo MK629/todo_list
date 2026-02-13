@@ -10,13 +10,13 @@ class TodoItem {
   }
 
   factory TodoItem.makeObjectFromMap(Map<String, Object?> mapFromDb){
-    return TodoItem(id: mapFromDb['id'] as int, description: mapFromDb['description'] as String, done: mapFromDb['done'] as bool);
+    return TodoItem(id: mapFromDb['id'] as int, description: mapFromDb['description'] as String, done: mapFromDb['done'] as int == 0 ? false : true);
   }
 
   Map<String, Object?> toInsertMap(){
     return {
       "description" : description, 
-      "done" : done
+      "done" : done ? 1 : 0
     };
   }
 
@@ -28,7 +28,7 @@ class TodoItem {
     return {
       "id" : id,
       "description" : description, 
-      "done" : done
+      "done" : done ? 1 : 0
     };
   }
 

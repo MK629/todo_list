@@ -44,7 +44,7 @@ class DbWorker {
   static Future<List<TodoItem>> getAllTodos() async {
     _dbAvailabilityCheck(database);
 
-    List<TodoItem> allTodos = List.empty();
+    List<TodoItem> allTodos = [];
 
     List<Map<String, Object?>>? dbResult = await database?.query('todos');
 

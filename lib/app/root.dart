@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:todo_list/app/add_todo_button/add_todo_button.dart';
 import 'package:todo_list/app/todolist/todolist.dart';
 
 class Root extends StatelessWidget {
@@ -9,6 +8,8 @@ class Root extends StatelessWidget {
   Widget build(BuildContext context){
     return MaterialApp(
       home: AppBody(),
+      themeMode: ThemeMode.dark,
+      theme: ThemeData.dark(),
     );
   }
 }
@@ -19,14 +20,12 @@ class AppBody extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          AddTodoButton(),
-          Expanded(
-            child: Todolist()
-          )
-        ],
-      ),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Todolist(),
+        ),
+      )
     );
   }
 }     
