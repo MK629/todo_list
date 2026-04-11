@@ -52,7 +52,7 @@ class _TodolistState extends State<Todolist> {
         ),
         Expanded(
           child: FutureBuilder(
-            future: todos, 
+            future: todos,
             builder: (context, snapshot){
                 if(snapshot.hasData){
                   return ListView(
@@ -65,7 +65,9 @@ class _TodolistState extends State<Todolist> {
                               Expanded(
                                 child: Text(
                                   '${snapshot.requireData.indexOf(todoItem) + 1}. ${todoItem.description}',
-                                  style: textStyle(),
+                                  style: textStyle().copyWith(
+                                    decoration: todoItem.done ? TextDecoration.lineThrough : TextDecoration.none
+                                  ),
                                 )),
                               Checkbox(
                                 checkColor: Colors.black,
@@ -77,17 +79,17 @@ class _TodolistState extends State<Todolist> {
                                     return Colors.black;
                                   }
                                 }),
-                                value: todoItem.done, 
+                                value: todoItem.done,
                                 onChanged: (value) {
                                   todoItem.changeStatus(value!);
                                   checkBoxClick(todoItem);
-                                }, 
+                                },
                               ),
                               IconButton(
                                 style: buttonStyle(),
                                 onPressed: () {
                                   deleteTodo(todoItem.id as int);
-                                }, 
+                                },
                                 icon: Icon(Icons.delete)
                               )
                             ],
